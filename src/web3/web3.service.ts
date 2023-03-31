@@ -107,7 +107,7 @@ export class Web3Service {
       const transaction = {
         from: accounts[index],
         to: account,
-        value: this.utils.toWei('1', 'ether'),
+        value: this.utils.toWei('2', 'ether'),
       };
       return await this.web3.eth.sendTransaction(transaction);
     } catch (error) {

@@ -1,7 +1,8 @@
-import { ValidationPipe, VersioningType } from '@nestjs/common';
+import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import helmet from 'helmet';
+import { AccountService } from './account/account.service';
 import { AppModule } from './app.module';
 import { Web3Service } from './web3/web3.service';
 
@@ -33,5 +34,11 @@ async function bootstrap() {
 
   const port = process.env.PORT || 8000;
   await app.listen(port);
+  Logger.log(`Application listening on port ${port}`, 'Bootstrap');
+
+  const accountService = app.get(AccountService);
+  await accountService.create();
+  await accountService.create();
+  Logger.log('Accounts created', 'Bootstrap');
 }
 bootstrap();

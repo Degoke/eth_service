@@ -21,6 +21,7 @@ services:
       - main
     depends_on:
       - mongo
+      - node
     restart: unless-stopped
 
   mongo:
